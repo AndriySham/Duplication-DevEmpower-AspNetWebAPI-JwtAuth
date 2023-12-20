@@ -26,6 +26,7 @@ namespace DevEmpower_AspNetWebAPI_JwtAu.Controllers
         [Route("Get")]
         public IActionResult Get()
         {
+
             return Ok(Summaries);
         }
     }
