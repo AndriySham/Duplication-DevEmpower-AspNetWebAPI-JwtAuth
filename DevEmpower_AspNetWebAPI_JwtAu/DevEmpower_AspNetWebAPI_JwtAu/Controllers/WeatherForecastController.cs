@@ -26,7 +26,7 @@ namespace DevEmpower_AspNetWebAPI_JwtAu.Controllers
         [Route("Get")]
         public IActionResult Get()
         {
-
+            int a = 7;
             return Ok(Summaries);
         }
     }
