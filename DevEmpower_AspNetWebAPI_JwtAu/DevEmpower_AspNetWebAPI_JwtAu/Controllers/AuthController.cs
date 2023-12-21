@@ -1,5 +1,6 @@
 ﻿using Azure.Identity;
 using DevEmpower_AspNetWebAPI_JwtAu.Core.Dtos;
+using DevEmpower_AspNetWebAPI_JwtAu.Core.Entities;
 using DevEmpower_AspNetWebAPI_JwtAu.Core.OtherObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,11 +16,11 @@ namespace DevEmpower_AspNetWebAPI_JwtAu.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
-        public AuthController(UserManager<IdentityUser> userManager, 
+        public AuthController(UserManager<ApplicationUser> userManager, 
                               RoleManager<IdentityRole> roleManager, 
                               IConfiguration configuration)
         {
@@ -61,8 +62,10 @@ namespace DevEmpower_AspNetWebAPI_JwtAu.Controllers
                 return BadRequest("UserName Already Exists");
             }
 
-            IdentityUser newUser = new IdentityUser()
+            ApplicationUser newUser = new ApplicationUser()
             {
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
                 Email = registerDto.Email,
                 UserName = registerDto.UserName,
                 SecurityStamp = Guid.NewGuid().ToString(),
@@ -110,6 +113,8 @@ namespace DevEmpower_AspNetWebAPI_JwtAu.Controllers
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim("JWTID", Guid.NewGuid().ToString()),
+                new Claim("FirstName", user.FirstName),
+                new Claim("LastName", user.LastName)
             };
 
             foreach (var userRole in userRoles)

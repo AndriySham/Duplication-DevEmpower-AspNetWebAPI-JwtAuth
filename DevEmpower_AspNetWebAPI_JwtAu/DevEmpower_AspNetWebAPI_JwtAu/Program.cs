@@ -4,6 +4,7 @@
 // Microsoft.EntityFrameworkCore.SqlServer
 // Microsoft.EntityFrameworkCore.Tools
 using DevEmpower_AspNetWebAPI_JwtAu.Core.DbContext;
+using DevEmpower_AspNetWebAPI_JwtAu.Core.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(optins =>
 
 // Add Identity
 builder.Services
-    .AddIdentity<IdentityUser, IdentityRole>()
+    .AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
