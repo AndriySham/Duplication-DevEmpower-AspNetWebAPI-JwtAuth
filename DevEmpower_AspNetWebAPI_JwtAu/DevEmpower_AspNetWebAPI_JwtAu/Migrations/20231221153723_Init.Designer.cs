@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevEmpower_AspNetWebAPI_JwtAu.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231220152852_Init")]
+    [Migration("20231221153723_Init")]
     partial class Init
     {
         /// <inheritdoc />

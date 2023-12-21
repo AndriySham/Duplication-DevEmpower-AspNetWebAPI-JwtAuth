@@ -1,3 +1,5 @@
+using DevEmpower_AspNetWebAPI_JwtAu.Core.OtherObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevEmpower_AspNetWebAPI_JwtAu.Controllers
@@ -29,5 +31,33 @@ namespace DevEmpower_AspNetWebAPI_JwtAu.Controllers
             int a = 7;
             return Ok(Summaries);
         }
+
+        [HttpGet]
+        [Route("GetUserRole")]
+        [Authorize(Roles = StaticUserRoles.USER)]
+        public IActionResult GetUserRole()
+        {
+            int a = 7;
+            return Ok(Summaries);
+        }
+
+        [HttpGet]
+        [Route("GetAdminRole")]
+        [Authorize(Roles = StaticUserRoles.ADMIN)]
+        public IActionResult GetAdminRole()
+        {
+            int a = 7;
+            return Ok(Summaries);
+        }
+
+        [HttpGet]
+        [Route("GetOwnerRole")]
+        [Authorize(Roles = StaticUserRoles.OWNER)]
+        public IActionResult GetOwnerRole()
+        {
+            int a = 7;
+            return Ok(Summaries);
+        }
+
     }
 }
