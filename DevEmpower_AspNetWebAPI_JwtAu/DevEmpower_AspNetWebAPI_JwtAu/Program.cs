@@ -3,8 +3,11 @@
 // Microsoft.AspNetCore.Identity.EntityFrameworkCore
 // Microsoft.EntityFrameworkCore.SqlServer
 // Microsoft.EntityFrameworkCore.Tools
+
 using DevEmpower_AspNetWebAPI_JwtAu.Core.DbContext;
 using DevEmpower_AspNetWebAPI_JwtAu.Core.Entities;
+using DevEmpower_AspNetWebAPI_JwtAu.Core.Interfaces;
+using DevEmpower_AspNetWebAPI_JwtAu.Core.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +68,10 @@ builder.Services.AddAuthentication(options =>
                 .GetBytes(builder.Configuration["JWT:Secret"]))
         };
     });
+
+
+// Inject app Dependencies (Dependency Injection)
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 
 var app = builder.Build();
